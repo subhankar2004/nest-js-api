@@ -24,9 +24,8 @@ export class AuthService{
                     hash,
                 }
             });
-            //return the saved user
-            delete user.hash;
-            return user;
+            const { hash: _hash, ...result } = user;
+            return result;
         }catch(error){
             if(error instanceof Prisma.PrismaClientKnownRequestError){
                 throw new ForbiddenException(
